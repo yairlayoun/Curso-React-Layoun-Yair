@@ -2,7 +2,8 @@
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CartWidget from './CartWidget.jsx'; // Importamos CartWidget
+import { Link } from 'react-router-dom';
+import CartWidget from './CartWidget';
 
 const NavBar = () => {
     const navBarStyles = {
@@ -16,23 +17,23 @@ const NavBar = () => {
 
     return (
         <nav className="navbar navbar-expand-lg" style={navBarStyles}>
-            <a className="navbar-brand" href="#" style={linkStyles}>Mercado Medieval</a>
+            <Link className="navbar-brand" to="/" style={linkStyles}>Mercado Medieval</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <a className="nav-link" href="#category1" style={linkStyles}>Armas</a>
+                        <Link className="nav-link" to="/category/armas" style={linkStyles}>Armas</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#category2" style={linkStyles}>Armaduras</a>
+                        <Link className="nav-link" to="/category/armaduras" style={linkStyles}>Armaduras</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#category3" style={linkStyles}>Miscelaneos</a>
+                        <Link className="nav-link" to="/category/miscelaneos" style={linkStyles}>Miscelaneos</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#category4" style={linkStyles}>Quienes somos</a>
+                        <Link className="nav-link" to="/category/quienes-somos" style={linkStyles}>Quienes somos</Link>
                     </li>
                 </ul>
                 <CartWidget /> {/* Añadimos CartWidget aquí */}

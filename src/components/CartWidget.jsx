@@ -1,15 +1,19 @@
 // src/components/CartWidget.jsx
 
 import React from 'react';
-import { FaShoppingCart } from 'react-icons/fa'; // Librería de iconos de react-icons
+import { FaShoppingCart } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useCart } from '../context/CartContext';
 
 const CartWidget = () => {
+    const { cart } = useCart();
+
     return (
-        <div className="cart-widget">
+        <Link to="/checkout" className="cart-widget d-flex align-items-center text-decoration-none text-white">
             <FaShoppingCart size={24} />
-            <span className="badge badge-pill badge-danger">3</span> {/* Número hardcodeado */}
-        </div>
+            {cart.length > 0 && <span className="badge bg-danger rounded-pill ms-2">{cart.length}</span>}
+        </Link>
     );
 };
 

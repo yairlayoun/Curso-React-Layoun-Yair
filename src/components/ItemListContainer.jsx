@@ -2,42 +2,47 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios'; // Importamos axios
-import Item from './Item';
+import { getProducts } from '../services/FakeStoreApi.jsx';
+import ItemList from './ItemList';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ItemListContainer = ({ greeting }) => {
     const { id } = useParams();
-    const [items, setItems] = useState([]);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const fetchItems = async () => {
-            try {
-                const response = await axios.get('https://fakestoreapi.com/products');
-                let fetchedItems = response.data;
+        const fetchProducts = async () => {
+            const allProducts = await getProducts();
+            let filteredProducts = [];
 
-                if (id) {
-                    fetchedItems = fetchedItems.filter(item => item.category === id);
-                }
-
-                setItems(fetchedItems);
-            } catch (error) {
-                console.error("Error fetching items: ", error);
+            switch (id) {
+                case 'technology':
+                    filteredProducts = allProducts.filter(product => product.category === 'electronics');
+                    break;
+                case 'clothing':
+                    filteredProducts = allProducts.filter(product => 
+                        product.category === "men's clothing" || product.category === "women's clothing"
+                    );
+                    break;
+                case 'accessories':
+                    filteredProducts = allProducts.filter(product => 
+                        product.category === 'jewelery'
+                    );
+                    break;
+                default:
+                    filteredProducts = allProducts;
             }
+
+            setProducts(filteredProducts);
         };
 
-        fetchItems();
+        fetchProducts();
     }, [id]);
 
     return (
-        <div className="item-list-container">
-            <h2>{greeting}</h2>
-            <div className="row">
-                {items.map(item => (
-                    <div className="col-md-4" key={item.id}>
-                        <Item id={item.id} name={item.title} image={item.image} />
-                    </div>
-                ))}
-            </div>
+        <div className="container">
+            <h2 className="my-4">{greeting}</h2>
+            <ItemList items={products} />
         </div>
     );
 };

@@ -1,18 +1,11 @@
 // src/components/Checkout.jsx
 
 import React from 'react';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext.jsx';
 import { Link } from 'react-router-dom';
 
 const Checkout = () => {
-    const { cart, clearCart } = useCart();
-
-    const handleCheckout = () => {
-        // Aquí puedes agregar lógica para finalizar la compra
-        // Por ejemplo, hacer una solicitud a una API para procesar el pago
-        clearCart(); // Vacía el carrito después de la compra
-        alert('Thank you for your purchase!');
-    };
+    const { cart, totalItems, totalPrice, generateOrder } = useCart();
 
     return (
         <div className="container">
@@ -26,13 +19,15 @@ const Checkout = () => {
                             <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                                 <div>
                                     <h5>{item.title}</h5>
-                                    <p>${item.price}</p>
+                                    <p>${item.price} x {item.quantity}</p>
                                 </div>
                                 <span className="badge bg-primary rounded-pill">{item.quantity}</span>
                             </li>
                         ))}
                     </ul>
-                    <button className="btn btn-success" onClick={handleCheckout}>Confirm Purchase</button>
+                    <h5>Total Items: {totalItems()}</h5>
+                    <h5>Total Price: ${totalPrice().toFixed(2)}</h5>
+                    <button className="btn btn-success mt-3" onClick={generateOrder}>Confirm Purchase</button>
                 </div>
             )}
             <Link to="/" className="btn btn-secondary mt-3">Continue Shopping</Link>

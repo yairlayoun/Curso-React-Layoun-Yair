@@ -1,5 +1,4 @@
 // src/components/NavBar.jsx
-
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
@@ -16,13 +15,13 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/category/technology">Technology</Link>
+                            <Link className="nav-link" to="/category/Technology">Technology</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/category/clothing">Clothing</Link>
+                            <Link className="nav-link" to="/category/Clothing">Clothing</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/category/accessories">Accessories</Link>
+                            <Link className="nav-link" to="/category/Accessories">Accessories</Link>
                         </li>
                     </ul>
                     <CartWidget />

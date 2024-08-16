@@ -4,7 +4,7 @@ import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext.jsx';
 
 const CartWidget = () => {
     const { cart } = useCart();
